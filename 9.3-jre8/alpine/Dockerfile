@@ -73,6 +73,9 @@ RUN set -xe \
 	&& mkdir -p "$TMPDIR" \
 	&& chown -R jetty:jetty "$TMPDIR"
 
+# 设置时区
+RUN apk add --update --no-cache tzdata && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo "Asia/Shanghai" > /etc/timezone && apk del tzdata
+
 COPY docker-entrypoint.sh generate-jetty-start.sh /
 
 USER jetty
