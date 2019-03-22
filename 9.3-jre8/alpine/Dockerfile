@@ -76,6 +76,8 @@ RUN set -xe \
 # 设置时区
 RUN apk add --update --no-cache tzdata && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo "Asia/Shanghai" > /etc/timezone && apk del tzdata
 
+RUN mkdir -p /var/lib/jetty/logs
+
 COPY docker-entrypoint.sh generate-jetty-start.sh /
 
 USER jetty
